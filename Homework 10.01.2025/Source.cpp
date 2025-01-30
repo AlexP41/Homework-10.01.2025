@@ -34,6 +34,8 @@ int numberOfWords(string& str);
 
 bool isPolindrom(string& str);
 
+void replaceDotsWithExclamationMarks(string& str);
+
 #pragma endregion
 
 
@@ -148,6 +150,24 @@ int main() {
 	Написати програму, яка замінює всі символи крапки "." у рядку, введеному користувачем, на символи знака оклику "!".
 	*/
 
+	exercise(5);
+
+	string userStr5;
+	cout << "\033[035mInput your string: \033[0m";
+	getline(cin, userStr5);
+
+	cout << endl;
+
+	cout << "\033[033mYou string before: \033[0m" << userStr5;
+	replaceDotsWithExclamationMarks(userStr5);
+
+	cout << endl;
+
+	cout << "\033[033mYou string with exclamation marks: \033[0m" << userStr5;
+
+	cout << endl;
+
+
 #pragma endregion
 
 
@@ -261,5 +281,17 @@ bool isPolindrom(string& str)
 	return ispolindrom;
 
 }
+
+void replaceDotsWithExclamationMarks(string& str)
+{
+	for (char& symbol : str)
+	{
+		if (symbol == '.')
+		{
+			symbol = '!';
+		}
+	}
+}
+
 
 #pragma endregion
