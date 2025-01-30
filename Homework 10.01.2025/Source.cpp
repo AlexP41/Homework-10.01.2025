@@ -17,6 +17,8 @@
 #include <tuple>
 #include <sstream>
 #include <regex>
+#include <type_traits>
+#include <algorithm>
 
 using namespace std; 
 
@@ -35,6 +37,8 @@ int numberOfWords(string& str);
 bool isPolindrom(string& str);
 
 void replaceDotsWithExclamationMarks(string& str);
+
+int countNumberOfCurrentLetterInString(char& symbolToFind, string& str);
 
 #pragma endregion
 
@@ -173,10 +177,29 @@ int main() {
 
 
 #pragma region Exercise 6
+
 	/*
 	№6
 	Користувач вводить рядок символів і шуканий символ. Порахувати скільки разів він зустрічається в рядку.
 	*/
+
+	exercise(6);
+
+	string userStr6;
+	cout << "\033[035mInput your string: \033[0m";
+	getline(cin, userStr6);
+
+	char symbolToFind;
+	cout << endl << "\033[033mInput symbol: \033[0m";
+	cin >> symbolToFind;
+	cin.ignore();
+	
+	cout << endl;
+
+	int numberOfSymbolInString = countNumberOfCurrentLetterInString(symbolToFind, userStr6);
+
+	cout << "Element \033[036m" << symbolToFind << "\033[0m occurs \033[036m" << numberOfSymbolInString << "\033[0m times in your string.";
+	cout << endl;
 
 #pragma endregion
 
@@ -293,5 +316,11 @@ void replaceDotsWithExclamationMarks(string& str)
 	}
 }
 
+int countNumberOfCurrentLetterInString(char& symbolToFind, string& str)
+{
+	int numberOfLetter = count(str.begin(), str.end(), symbolToFind);
+
+	return numberOfLetter;
+}
 
 #pragma endregion
