@@ -9,10 +9,10 @@
 Результат роботи: посилання на GitHub
 */
 
-#include <iostream>  
-#include <string>
+#include <iostream> 
 #include <windows.h>
 #include <locale.h>
+#include <string>
 #include <utility>
 #include <tuple>
 #include <sstream>
@@ -38,15 +38,11 @@ bool isPolindrom(string& str);
 
 
 int main() {
-	// Налаштовуємо кодування консолі
-	SetConsoleOutputCP(1251);
-	SetConsoleCP(1251);
+
 	system("chcp 1251>null");
-
-	// Встановлюємо українську локаль
-	setlocale(LC_ALL, "ukr");
-
-    srand(time(NULL));
+	setlocale(LC_ALL, "uk_UA.UTF-8");
+	SetConsoleOutputCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
 
 #pragma region Exercise 1
 
@@ -139,7 +135,8 @@ int main() {
 	bool polindrom = isPolindrom(userStr4);
 
 	cout << endl << "Результат: ";
-	if (polindrom) cout << "\033[032mполіндром.\033[0m"
+	if (polindrom) cout << "\033[032mполіндром.\033[0m";
+	else cout << "\033[031mНЕ поліндром.\033[0m";
 
 #pragma endregion
 
@@ -235,7 +232,8 @@ bool isWord(string& word)
 int numberOfWords(string& str)
 {
 	int numberOfWords = 0;
-	regex punctuation("[^a-zA-Z0-9'-]+");
+	regex punctuation("[^a-zA-ZА-Яа-яЄєІіЇїҐґ0-9'’-]+");
+
 	str = regex_replace(str, punctuation, " ");
 
 	/*cout << endl << str << endl;*/
@@ -255,26 +253,13 @@ bool isPolindrom(string& str)
 {
 	bool ispolindrom = true;
 
-	/*if (str.length() % 2 == 0)
-	{
-		for (size_t i = 0; i < str.length()/2; i++)
-		{
-			if (str[i] != str[str.length() - 1]) ispolindrom = false;
-		}
-	}
-	else
-	{
-		for (size_t i = 0; i < str.length() / 2; i++)
-		{
-			if (str[i] != str[str.length() - 1]) ispolindrom = false;
-		}
-	}*/
 	for (size_t i = 0; i < str.length() / 2; i++)
 	{
-		if (str[i] != str[str.length() - 1]) ispolindrom = false;
+		if (str[i] != str[str.length() - 1 - i]) ispolindrom = false;
 	}
 
 	return ispolindrom;
+
 }
 
 #pragma endregion
